@@ -2,6 +2,7 @@ import { Table, TableBody, TableCell, TableContainer, TableHead, TableRow } from
 import Grid2 from "@mui/material/Unstable_Grid2/Grid2"
 import { useGetTradeList } from "../TempApi"
 import { TradeOfApi } from "../_types";
+import IconProv from "../../IconProv";
 
 export default function TodayTradeList(){
     const tradeList = useGetTradeList();
@@ -27,14 +28,27 @@ function TodayTradeListView({
                             data.map(d=>(
                                 <TableRow>
                                     <TableCell>
-                                        {d.fromAssetName}
+                                        <Grid2
+                                            container
+                                            alignItems={'center'}
+                                        >
+                                            <IconProv />
+                                            {d.fromAssetName}
+                                        </Grid2>
+                                        
                                     </TableCell>
                                     <TableCell>
-                                        {
-                                            d.toAssetName ? d.toAssetName
-                                            : d.budgetName ? d.budgetName
-                                            : ''
-                                        }
+                                        <Grid2
+                                            container
+                                            alignItems={'center'}
+                                        >
+                                            <IconProv />
+                                            {
+                                                d.toAssetName ? d.toAssetName
+                                                : d.budgetName ? d.budgetName
+                                                : ''
+                                            }
+                                        </Grid2>
                                     </TableCell>
                                     <TableCell>
                                         {d.amount}

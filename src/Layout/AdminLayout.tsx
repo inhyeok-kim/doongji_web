@@ -18,7 +18,9 @@ export default function AdminLayout(){
                 height={'100%'}
                 width={'100%'}
                 sx={{
-                    background : 'linear-gradient(132deg,#94a9cb 5%,#70a5e1 20%,#5f9bdf 60%,#2f6ed3 95%);'
+                    background : 'linear-gradient(123deg,#cde0ff 10%,#ddd1ff 25%,#e8eeff 50%,#c5e9ff 100%)'
+                    // backgroundImage : 'url(/wallpaperbetter.jpg)',
+                    // backgroundRepeat : 'no-repeat',
                 }}
                 zIndex={-3}
                 >

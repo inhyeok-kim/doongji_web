@@ -1,6 +1,7 @@
 import Grid2 from "@mui/material/Unstable_Grid2/Grid2";
 
 interface Props {
+    xs? : number
     children? : React.ReactNode
     width? : string,
     minWidth? : string,
@@ -18,6 +19,11 @@ interface Props {
     left? : string | number
     right? : string | number
     bottom? : string | number
+    margin? : string
+    marginLeft? : string
+    marginRight? : string
+    marginBottom? : string
+    marginTop? : string
 }
 export default function GlassWidget({
     children,
@@ -37,9 +43,21 @@ export default function GlassWidget({
     left,
     right,
     bottom,
+    margin,
+    marginLeft,
+    marginRight,
+    marginBottom,
+    marginTop,
+    xs
 } : Props){
     return (
         <Grid2
+            xs={xs}
+            margin = {margin}
+            marginLeft = {marginLeft}
+            marginRight = {marginRight}
+            marginBottom= {marginBottom}
+            marginTop = {marginTop}
             top = {top}
             left = {left}
             right = {right}
@@ -57,12 +75,13 @@ export default function GlassWidget({
             height={height}
             maxHeight={maxHeight}
             sx={{
-                background: "rgba( 255, 255, 255, 0.2 )",
-                boxShadow: '0px 1px 20px 0 rgb(31 38 135 / 10%);',
-                backdropFilter: 'blur( 4px )',
-                WebkitBackdropFilter : 'blur( 4px )',
+                boxSizing : 'border-box',
+                background: "rgba( 255, 255, 255, 0.3 )",
+                boxShadow : '-1px 1px 20px rgba(205, 205,205, 0.5)',
+                backdropFilter: 'blur( 5px )',
+                WebkitBackdropFilter : 'blur( 5px )',
                 borderRadius: '25px',
-                borderTop : '1px solid rgba( 255, 255, 255, 0.5 )',
+                border : '2px solid rgba( 255, 255, 255, 0.3 )',
                 textShadow : '0px 0px 1px gray;'
             }}
         >

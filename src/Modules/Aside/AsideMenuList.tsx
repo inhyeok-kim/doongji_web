@@ -1,5 +1,5 @@
 import { ListItemIcon, ListItemText, MenuItem, MenuList } from "@mui/material"
-import { grey } from "@mui/material/colors"
+import { blueGrey } from "@mui/material/colors"
 import CalendarMonthIcon from '@mui/icons-material/CalendarMonth';
 import DashboardIcon from '@mui/icons-material/Dashboard';
 import SavingsIcon from '@mui/icons-material/Savings';
@@ -20,21 +20,21 @@ export default function AsideMenuList(){
 
     return (
         <MenuList>
-            <MenuItem sx={{color : "white"}} selected={currMenu === '/Dashboard'}>
+            <MenuItem sx={{color : blueGrey[700]}} selected={currMenu === '/Dashboard'}>
                 <ListItemIcon>
-                    <DashboardIcon sx={{color:'white'}} />
+                    <DashboardIcon sx={{color:blueGrey[700]}} />
                 </ListItemIcon>
                 <ListItemText>Dashboard</ListItemText>
             </MenuItem>
-            <MenuItem sx={{color : "white"}} selected={currMenu === '/Calendar'}>
+            <MenuItem sx={{color : blueGrey[700]}} selected={currMenu === '/Calendar'}>
                 <ListItemIcon>
-                    <CalendarMonthIcon sx={{color:'white'}} />
+                    <CalendarMonthIcon sx={{color:blueGrey[700]}} />
                 </ListItemIcon>
                 <ListItemText onClick={()=>{fnLinkTo('/Calendar')}}>Calendar</ListItemText>
             </MenuItem>
-            <MenuItem sx={{color : "white"}} selected={currMenu === '/Budget'}>
+            <MenuItem sx={{color : blueGrey[700]}} selected={currMenu === '/Budget'}>
                 <ListItemIcon>
-                    <SavingsIcon sx={{color:'white'}} />
+                    <SavingsIcon sx={{color:blueGrey[700]}} />
                 </ListItemIcon>
                 <ListItemText onClick={()=>{fnLinkTo('/Budget')}}>Budget</ListItemText>
             </MenuItem>
