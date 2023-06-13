@@ -1,10 +1,10 @@
 import { useState } from "react";
-import { Asset, Budget, Trade, TradeOfApi } from "./_types";
+import { Asset, Budget, BudgetOfApi, Trade, TradeOfApi } from "./_types";
 
 const tradeDatas : Trade[] = [
     { // 1번 자산에서 1번 예산(지출)
         id : '1',
-        amount : 1000,
+        amount : 10000,
         budgetId : '1',
         fromAssetId : '1',
         type : 'expend',
@@ -17,19 +17,34 @@ const tradeDatas : Trade[] = [
         fromAssetId : '1',
         type : 'income',
         datetime : '20230612'
-    }
+    },
+    { // 1번 자산에서 1번 예산(지출)
+        id : '3',
+        amount : 12000,
+        budgetId : '3',
+        fromAssetId : '2',
+        type : 'expend',
+        datetime : '20230612'
+    },
 ]
 const budgetDatas : Budget[] = [
     {
         id : '1',
-        name : '예산1',
+        name : '예산1(지출)',
         type : 'expend',
+        amount : 15000,
     },
     {
         id : '2',
-        name : '예산2',
+        name : '예산2(수입)',
         type : 'income',
-    }
+    },
+    {
+        id : '3',
+        name : '예산3(지출)',
+        type : 'expend',
+        amount : 550000,
+    },
 ];
 const assetDatas : Asset[] = [
     {
@@ -51,8 +66,16 @@ const assetDatas : Asset[] = [
         id : '4',
         name : '투자1',
         type : 'invest',
-    }
+    },
 ];
+
+export function getBudgetDataList() : BudgetOfApi[]{
+    return budgetDatas.filter(v=>v.type==="expend").map(budget=>{
+        const apiData : BudgetOfApi = budget;
+        apiData.useAmount = tradeDatas.filter(v=>v.budgetId === budget.id).reduce((p,c)=>p+c.amount!,0);
+        return apiData;
+    });
+}
 
 export function getTradeDataList() : TradeOfApi[]{
     const list = tradeDatas.map(data =>{
@@ -75,5 +98,9 @@ export function getTradeDataList() : TradeOfApi[]{
 
 export function useGetTradeList(){
     const [list, setList] = useState<TradeOfApi[]>(getTradeDataList());
+    return list;
+}
+export function useGetBudgetList(){
+    const [list, setList] = useState<BudgetOfApi[]>(getBudgetDataList());
     return list;
 }

@@ -20,7 +20,9 @@ function TodayTradeListView({
 }: ViewProps){
 
     return (
-        <Grid2>
+        <Grid2
+            padding={0}
+        >
             <TableContainer>
                 <Table>
                     <TableBody>

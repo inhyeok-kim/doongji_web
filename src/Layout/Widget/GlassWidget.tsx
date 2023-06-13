@@ -1,4 +1,6 @@
+import { Typography } from "@mui/material";
 import Grid2 from "@mui/material/Unstable_Grid2/Grid2";
+import { blueGrey } from "@mui/material/colors";
 
 interface Props {
     xs? : number
@@ -24,6 +26,7 @@ interface Props {
     marginRight? : string
     marginBottom? : string
     marginTop? : string
+    title? : string
 }
 export default function GlassWidget({
     children,
@@ -33,7 +36,7 @@ export default function GlassWidget({
     height,
     minHeight,
     maxHeight,
-    padding = '15px 25px',
+    padding = '20px 25px 15px 25px',
     paddingLeft,
     paddingRight,
     paddingBottom,
@@ -48,7 +51,8 @@ export default function GlassWidget({
     marginRight,
     marginBottom,
     marginTop,
-    xs
+    xs,
+    title
 } : Props){
     return (
         <Grid2
@@ -85,6 +89,12 @@ export default function GlassWidget({
                 textShadow : '0px 0px 1px gray;'
             }}
         >
+            {title ? 
+                <Typography variant="h6" color={blueGrey[700]}>
+                    {title}
+                </Typography>
+                :''
+            }
             {children}
         </Grid2>
     )

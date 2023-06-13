@@ -8,7 +8,7 @@ export default function Body(){
         <Grid2
             width={'calc(100% - 200px)'}
             paddingLeft={2}
-            height={'calc(100% - 3rem)'}
+            height={'100%'}
         >
             <GlassWidget
                 height="100%"
