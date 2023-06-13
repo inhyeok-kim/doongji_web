@@ -20,23 +20,23 @@ export default function AsideMenuList(){
 
     return (
         <MenuList>
-            <MenuItem sx={{color : grey[700]}} selected={currMenu === '/Dashboard'}>
+            <MenuItem sx={{color : "white"}} selected={currMenu === '/Dashboard'}>
                 <ListItemIcon>
-                    <DashboardIcon />
+                    <DashboardIcon sx={{color:'white'}} />
                 </ListItemIcon>
                 <ListItemText>Dashboard</ListItemText>
             </MenuItem>
-            <MenuItem sx={{color : grey[700]}} selected={currMenu === '/Calendar'}>
+            <MenuItem sx={{color : "white"}} selected={currMenu === '/Calendar'}>
                 <ListItemIcon>
-                    <CalendarMonthIcon />
+                    <CalendarMonthIcon sx={{color:'white'}} />
                 </ListItemIcon>
                 <ListItemText onClick={()=>{fnLinkTo('/Calendar')}}>Calendar</ListItemText>
             </MenuItem>
-            <MenuItem sx={{color : grey[700]}} selected={currMenu === '/Budget'}>
+            <MenuItem sx={{color : "white"}} selected={currMenu === '/Budget'}>
                 <ListItemIcon>
-                    <SavingsIcon />
+                    <SavingsIcon sx={{color:'white'}} />
                 </ListItemIcon>
-                <ListItemText onClick={()=>{fnLinkTo('/Calendar')}}>Budget</ListItemText>
+                <ListItemText onClick={()=>{fnLinkTo('/Budget')}}>Budget</ListItemText>
             </MenuItem>
         </MenuList>
     )

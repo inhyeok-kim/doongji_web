@@ -3,24 +3,25 @@ import { Outlet } from "react-router-dom";
 import Navbar from "./NavBar";
 import { Box } from "@mui/material";
 import { grey } from "@mui/material/colors";
+import GlassWidget from "../Widget/GlassWidget";
 
 export default function Body(){
     return (
         <Grid2
-            xl={11}
-            sm={10}
-            xs={12}
-            minHeight={'100vh'}
-            bgcolor={grey[50]}
+            width={'calc(100% - 200px)'}
+            paddingLeft={2}
         >
-            <Navbar />
-            <Grid2
-                xs={12}
-                padding={'1rem'}
-                height={'calc(100% - 3rem)'}
-            >
-                <Outlet />
-            </Grid2>
+            <GlassWidget>
+
+                <Navbar />
+                <Grid2
+                    xs={12}
+                    padding={'1rem'}
+                    height={'calc(100% - 3rem)'}
+                >
+                    <Outlet />
+                </Grid2>
+            </GlassWidget>
         </Grid2>
     )
 }

@@ -1,43 +1,39 @@
-import { Divider, Typography } from "@mui/material";
+import { Typography } from "@mui/material";
 import Grid2 from "@mui/material/Unstable_Grid2/Grid2";
 import AsideMenuList from "../../Modules/Aside/AsideMenuList";
+import { grey } from "@mui/material/colors"
 
 export default function Aside(){
     
     return (
         <Grid2
-            xl={1}
-            sm={2}
-            xs={0}
-            sx={{
-                display : {sm:'block', xs:'none'}
-            }}
-            boxShadow={'-5px 1px 10px 0px grey'}
-            zIndex={1}
+            minWidth={'200px'}
         >
             <Grid2
                 container
-                height={'3rem'}
+                height={'4rem'}
                 alignItems={'center'}
-                justifyContent={'center'}
+                color={grey[700]}
+                paddingLeft={2}
             >
                 <Typography
                     variant="h6"
                     noWrap
                     sx={{
-                        fontFamily: 'monospace',
+                        fontFamily: 'sans-serif',
                         fontWeight: 'bold',
-                        letterSpacing: '.3rem',
+                        letterSpacing: '.1rem',
                         color: 'inherit',
                         textDecoration: 'none',
+                        fontSize : '1.5rem'
                     }}
                 >
-                    ourFam
+                    DGJI
                 </Typography>
             </Grid2>
-            <Divider />
             <AsideMenuList/>
-            
+                
         </Grid2>
+        
     )
 }
