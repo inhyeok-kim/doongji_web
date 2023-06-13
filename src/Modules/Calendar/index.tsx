@@ -1,9 +1,6 @@
-import FullCalendar from "@fullcalendar/react";
-import interactionPlugin from '@fullcalendar/interaction';
-import dayGridPlugin from '@fullcalendar/daygrid'
-import { DateSelectArg, EventClickArg } from "@fullcalendar/core";
-import timeGridPlugin from '@fullcalendar/timegrid'
-import {useEffect,useRef,useState} from 'react';
+import Grid2 from "@mui/material/Unstable_Grid2/Grid2";
+import {forwardRef, useEffect, useImperativeHandle, useState} from 'react';
+import DayGridOfMonth from "./views/DayGridOfMonth";
 
 const temp_events = [
     {
@@ -38,66 +35,47 @@ const temp_events = [
  * 따라서 변경된 일정 사항을 원격으로 받아올 때는 직접 calendarAPi로 제어해야 할 것으로 보임.
  */
 
+interface CalendarProps {
+    calendarType? : 'dayOfMonth' | 'monthOfYear' | 'dayOfWeek'
+    year? : number | string
+    month? : number | string
+}
 
-export default function Calendar(){
-    const calendarRef : React.LegacyRef<FullCalendar> | undefined = useRef(null);
-    const [events,setEvents] = useState(temp_events);
+const Calendar = forwardRef(({
+    calendarType = 'dayOfMonth',
+    year,
+    month
+} : CalendarProps, ref)=>{
+
+    const [stDate, setStDate] = useState<Date>(new Date());
 
     useEffect(()=>{
-        setTimeout(()=>{
-            const newEvents = [...events];
-            newEvents.push({
-                title:'add1',
-                start:'2023-05-04'
-            });
-        },5000);
-    },[]);
-
-    function onSelect(e : DateSelectArg){
-        let startDate;
-        let endDate;
-        let startTm;
-        let endTm;
-        if(e.allDay){
-            startDate = e.startStr;
-            endDate = e.endStr;
-        } else {
-            startDate = e.startStr.substring(0,10);
-            endDate = e.endStr.substring(0,10);
-            startTm = e.startStr.substring(11,16);
-            endTm = e.endStr.substring(11,16);
+        const date = new Date();
+        if(year){
+            date.setFullYear(parseInt(year.toString()));
         }
-        console.log(startDate,endDate,startTm,endTm);
-    }
+        if(month){
+            date.setMonth(parseInt(month.toString())-1);
+        }
+        setStDate(date);
+    },[year, month]);
+    
+    useImperativeHandle(ref,()=>{
+        return {
 
-    function onEventClick(e:EventClickArg){
-        console.log(e);
-    }
-
-    function onEventHandler(e:EventClickArg){
-
-    }
+        }
+    });
 
     return (
-        <FullCalendar
-            ref={calendarRef}
-            selectable={true}
-            plugins={[ dayGridPlugin, interactionPlugin, timeGridPlugin ]}
-            initialView="dayGridMonth"
-            select={onSelect}
-            headerToolbar={{
-                left: 'prev,next,today',
-                center: 'title',
-                right: 'dayGridMonth,timeGridWeek' // user can switch between the two
-            }}
-            dayMaxEvents={true}
-            events={events}
-            eventClick={onEventClick}
-            editable={true}
-            eventResizableFromStart={true}
-            eventDrop={onEventHandler}
-            eventResize={onEventHandler}
-            height={'100%'}
-      />
+        <Grid2>
+            {
+                calendarType === 'dayOfMonth' ? 
+                <DayGridOfMonth stDate={stDate}/>
+                :
+                ''
+            }
+        </Grid2>
     )
-}
+});
+
+export default Calendar;
