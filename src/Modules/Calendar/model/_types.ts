@@ -1,28 +1,22 @@
+export interface CalendarAPI {
+    goNextMonth : Function
+    goPrevMonth : Function
+}
+
 export type CalendarType = 'year' | 'month' | 'week';
 
 export interface CalendarOption {
-    type? : CalendarType
-    selectDate? : string
-    selectYear? : string,
-    selectMonth? : string
-    range? : number[]
-    events? : Event[]
-}
-
-export interface CalendarData {
-    type : CalendarType
-    today : string
-    selectDate? : string
-    selectYear? : string,
-    selectMonth? : string
-    dateList : DateData[]
-    events? : Event[]
-    setEvent : Function
-    getEvent : Function
-    addEvent : Function
-    deleteEvent : Function
-    getDateEventMap : Function
-    getAllEvent : Function
+    stDate? : Date
+    isVerticalScroll? : boolean
+    overType? : 'hide'|'show'|'none'
+    onClick? : Function
+    onDragStart? : Function
+    onDragEnd? : Function
+    calendarType? : 'dayOfMonth' | 'monthOfYear' | 'dayOfWeek'
+    year? : number | string
+    month? : number | string
+    width? : number | string
+    height? : number | string
 }
 
 export interface DateData {
