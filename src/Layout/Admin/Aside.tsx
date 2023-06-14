@@ -28,7 +28,7 @@ export default function Aside(){
                         fontSize : '1.5rem'
                     }}
                 >
-                    DGJI
+                    DNJI
                 </Typography>
             </Grid2>
             <AsideMenuList/>

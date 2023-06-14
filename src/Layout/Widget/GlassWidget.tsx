@@ -80,7 +80,7 @@ export default function GlassWidget({
             maxHeight={maxHeight}
             sx={{
                 boxSizing : 'border-box',
-                background: "rgba( 255, 255, 255, 0.3 )",
+                background: "rgba( 255, 255, 255, 0.2 )",
                 boxShadow : '-1px 1px 20px rgba(205, 205,205, 0.5)',
                 backdropFilter: 'blur( 5px )',
                 WebkitBackdropFilter : 'blur( 5px )',

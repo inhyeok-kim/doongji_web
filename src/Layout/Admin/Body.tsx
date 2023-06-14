@@ -16,8 +16,12 @@ export default function Body(){
 
                 <Navbar />
                 <Grid2
+                    height={'calc(100% - 3rem)'}
                     xs={12}
                     padding={'1rem'}
+                    sx={{
+                        overflowY : 'auto'
+                    }}
                 >
                     <Outlet />
                 </Grid2>

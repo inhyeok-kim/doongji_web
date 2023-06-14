@@ -32,11 +32,11 @@ export default function AsideMenuList(){
                 </ListItemIcon>
                 <ListItemText onClick={()=>{fnLinkTo('/Calendar')}}>Calendar</ListItemText>
             </MenuItem>
-            <MenuItem sx={{color : blueGrey[700]}} selected={currMenu === '/Budget'}>
+            <MenuItem sx={{color : blueGrey[700]}} selected={currMenu === '/Account'}>
                 <ListItemIcon>
                     <SavingsIcon sx={{color:blueGrey[700]}} />
                 </ListItemIcon>
-                <ListItemText onClick={()=>{fnLinkTo('/Budget')}}>Budget</ListItemText>
+                <ListItemText onClick={()=>{fnLinkTo('/Account')}}>Account</ListItemText>
             </MenuItem>
         </MenuList>
     )
