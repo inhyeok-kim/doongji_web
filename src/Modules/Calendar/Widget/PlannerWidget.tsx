@@ -1,9 +1,17 @@
 import Grid2 from "@mui/material/Unstable_Grid2/Grid2";
-import {useRef} from 'react';
+import {useRef,useEffect} from 'react';
 import { CalendarAPI, DateData } from "../model/_types";
 import PlannerCalendar from "../PlannerCalendar";
+import { useSelectEventList } from "../hook/CalendarHooks";
 
 export default function PlannerWidget(){
+
+    const [data,refetch] = useSelectEventList();
+
+    useEffect(()=>{
+        console.log(data);
+    },[data]);
+
     const CalApi = useRef<CalendarAPI>();
 
     function goNextMonth(){

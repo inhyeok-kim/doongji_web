@@ -1,10 +1,34 @@
 import { useQuery } from "@tanstack/react-query";
-import { selectEventList } from "../api/CalendarApi";
-import { eventList } from "../api/TempData";
+import { selectBudgetList, selectTradeList } from "../api/AccountApi";
 import { PROFILE } from "../../../Utils/Config";
+import { getBudgetDataList, getTradeDataList } from "../api/TempData";
+import { BudgetOfApi, TradeOfApi } from "../_types";
 
-export function useSelectEventList(){
-    const {status, data, refetch} = useQuery(["event"], selectEventList,{
+
+export function useGetTradeList(){
+    const {status, data, refetch} = useQuery<TradeOfApi[]>(["trade"], selectTradeList,{
+        refetchOnWindowFocus: false, // react-query는 사용자가 사용하는 윈도우가 다른 곳을 갔다가 다시 화면으로 돌아오면 이 함수를 재실행합니다. 그 재실행 여부 옵션 입니다.
+        retry: 0, // 실패시 재호출 몇번 할지
+    });
+
+    if(status === 'loading'){
+        return [[],refetch];
+    }
+
+    if(status === 'error'){
+        if(PROFILE === 'DEV'){
+            return [getTradeDataList(),refetch];
+        } else if(PROFILE === 'PROD'){
+            return ['error',refetch];
+        }
+    }
+
+    return [data,refetch];
+
+}
+
+export function useGetBudgetList(){
+    const {status, data, refetch} = useQuery<BudgetOfApi[]>(["budget"], selectBudgetList,{
         refetchOnWindowFocus: false, // react-query는 사용자가 사용하는 윈도우가 다른 곳을 갔다가 다시 화면으로 돌아오면 이 함수를 재실행합니다. 그 재실행 여부 옵션 입니다.
         retry: 0, // 실패시 재호출 몇번 할지
         onSuccess: data => {
@@ -23,7 +47,7 @@ export function useSelectEventList(){
 
     if(status === 'error'){
         if(PROFILE === 'DEV'){
-            return [eventList,refetch];
+            return [getBudgetDataList(),refetch];
         } else if(PROFILE === 'PROD'){
             return ['error',refetch];
         }

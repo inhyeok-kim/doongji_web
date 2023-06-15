@@ -1,0 +1,1 @@
+export const PROFILE = process.env.REACT_APP_PROFILE as 'DEV' | 'PROD'

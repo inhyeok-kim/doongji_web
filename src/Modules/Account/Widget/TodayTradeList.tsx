@@ -1,14 +1,14 @@
 import { Table, TableBody, TableCell, TableContainer, TableHead, TableRow } from "@mui/material"
 import Grid2 from "@mui/material/Unstable_Grid2/Grid2"
-import { useGetTradeList } from "../TempApi"
 import { TradeOfApi } from "../_types";
 import IconProv from "../../IconProv";
+import { useGetTradeList } from "../hook/AccountHooks";
 
 export default function TodayTradeList(){
-    const tradeList = useGetTradeList();
+    const [tradeList, refetchTradeList] = useGetTradeList();
 
     return (
-        <TodayTradeListView data={tradeList} />
+        <TodayTradeListView data={tradeList ? tradeList : []} />
     )
 }
 

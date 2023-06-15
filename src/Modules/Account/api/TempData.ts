@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { Asset, Budget, BudgetOfApi, Trade, TradeOfApi } from "./_types";
+import { Asset, Budget, BudgetOfApi, Trade, TradeOfApi } from "../_types";
 
 const tradeDatas : Trade[] = [
     { // 1번 자산에서 1번 예산(지출)
@@ -94,13 +94,4 @@ export function getTradeDataList() : TradeOfApi[]{
         return apiData;
     });
     return list as TradeOfApi[];
-}
-
-export function useGetTradeList(){
-    const [list, setList] = useState<TradeOfApi[]>(getTradeDataList());
-    return list;
-}
-export function useGetBudgetList(){
-    const [list, setList] = useState<BudgetOfApi[]>(getBudgetDataList());
-    return list;
 }

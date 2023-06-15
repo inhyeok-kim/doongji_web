@@ -3,7 +3,7 @@ import { Budget, BudgetOfApi } from "../_types";
 import Grid2 from "@mui/material/Unstable_Grid2/Grid2"
 import IconProv from "../../IconProv";
 import { blueGrey, orange } from "@mui/material/colors";
-import { useGetBudgetList } from "../TempApi";
+import { useGetBudgetList } from "../hook/AccountHooks";
 
 export default function BudgetCurrent(){
     const list = useGetBudgetList();
