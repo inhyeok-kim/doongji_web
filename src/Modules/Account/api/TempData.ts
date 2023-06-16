@@ -1,4 +1,3 @@
-import { useState } from "react";
 import { Asset, Budget, BudgetOfApi, Trade, TradeOfApi } from "../_types";
 
 const tradeDatas : Trade[] = [

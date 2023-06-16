@@ -1,14 +1,15 @@
+import {useEffect} from 'react';
 import { Avatar, List, ListItem, ListItemAvatar, ListItemIcon, ListItemText, Paper } from "@mui/material";
-import { Budget, BudgetOfApi } from "../_types";
+import { BudgetOfApi } from "../_types";
 import Grid2 from "@mui/material/Unstable_Grid2/Grid2"
 import IconProv from "../../IconProv";
 import { blueGrey, orange } from "@mui/material/colors";
 import { useGetBudgetList } from "../hook/AccountHooks";
 
 export default function BudgetCurrent(){
-    const list = useGetBudgetList();
+    const {isLoading, data, refetch, isError} = useGetBudgetList();
 
-    return <BudgetCurrentView data={list}/>
+    return <BudgetCurrentView data={data}/>
 }
 
 
@@ -18,6 +19,9 @@ interface ViewProps {
 function BudgetCurrentView({
     data=[]
 }: ViewProps){
+    useEffect(()=>{
+        console.log(data);
+    },[data]);
     return (
         <Grid2
             padding={0}
@@ -25,7 +29,7 @@ function BudgetCurrentView({
             <List dense>
                 {
                     data.map(d=>(
-                        <ListItem>
+                        <ListItem key={d.id}>
                             <ListItemAvatar>
                                 <Avatar>
                                     <IconProv />

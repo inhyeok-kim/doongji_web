@@ -5,10 +5,10 @@ import IconProv from "../../IconProv";
 import { useGetTradeList } from "../hook/AccountHooks";
 
 export default function TodayTradeList(){
-    const [tradeList, refetchTradeList] = useGetTradeList();
+    const {isLoading, data, refetch, isError} = useGetTradeList();
 
     return (
-        <TodayTradeListView data={tradeList ? tradeList : []} />
+        <TodayTradeListView data={data as TradeOfApi[]} />
     )
 }
 
@@ -28,7 +28,7 @@ function TodayTradeListView({
                     <TableBody>
                         {
                             data.map(d=>(
-                                <TableRow>
+                                <TableRow key={d.id}>
                                     <TableCell>
                                         <Grid2
                                             container
