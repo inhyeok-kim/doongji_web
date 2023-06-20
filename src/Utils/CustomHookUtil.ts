@@ -1,5 +1,6 @@
 import { UseQueryResult } from "@tanstack/react-query";
 
-export function returnQuery(result : UseQueryResult){
-    
+
+function testFunc(fn : (str : string)=>any){
+    fn('hi');
 }
