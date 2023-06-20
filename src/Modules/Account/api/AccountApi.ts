@@ -1,3 +1,4 @@
+import { PROFILE } from "src/Utils/Config";
 import { HOST } from "../../../Utils/APIUtil";
 import { BudgetOfApi, TradeOfApi } from "../_types";
 import { getBudgetDataList, getTradeDataList } from "./TempData";
@@ -7,7 +8,9 @@ export async function selectTradeList(){
         method : 'get'
     }).then(res=>res.json())
     .catch(e=>{
-        return getTradeDataList();
+        if(PROFILE === 'DEV'){
+            return getTradeDataList();
+        }
     }) as TradeOfApi[];
 }
 export async function selectBudgetList(){
@@ -15,6 +18,8 @@ export async function selectBudgetList(){
         method : 'get'
     }).then(res=>res.json())
     .catch(e=>{
-        return getBudgetDataList();
+        if(PROFILE === 'DEV'){
+            return getBudgetDataList();
+        }
     }) as BudgetOfApi[] ;
 }

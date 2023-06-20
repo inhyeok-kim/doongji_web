@@ -17,6 +17,7 @@ export interface CalendarOption {
     month? : number | string
     width? : number | string
     height? : number | string
+    events? : Event[]
 }
 
 export interface DateData {
@@ -29,12 +30,10 @@ export interface DateData {
 }
 
 export interface Event {
-    id : string
-    date : string
-    time : string
-    title : string
-}
-
-export interface DateEventMap {
-    [key : string] : Event[];
+    id? : string
+    start? : string
+    end? : string
+    title? : string
+    isAllDay? : boolean
+    
 }

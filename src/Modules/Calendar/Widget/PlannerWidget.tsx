@@ -6,11 +6,7 @@ import { useSelectEventList } from "../hook/CalendarHooks";
 
 export default function PlannerWidget(){
 
-    const [data,refetch] = useSelectEventList();
-
-    useEffect(()=>{
-        console.log(data);
-    },[data]);
+    const eventApi = useSelectEventList();
 
     const CalApi = useRef<CalendarAPI>();
 
@@ -41,6 +37,7 @@ export default function PlannerWidget(){
                 height={'calc(100% - 30px)'}
                 onClick={onDateClick}
                 onDragEnd={onDateDrag}
+                events={eventApi.isLoading ? [] : eventApi.data}
             />
         </Grid2>
     )

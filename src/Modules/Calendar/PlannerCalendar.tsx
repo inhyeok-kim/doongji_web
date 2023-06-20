@@ -20,7 +20,8 @@ const PlannerCalendar = forwardRef(({
     height = '100%',
     onClick = ()=>{},
     onDragEnd = ()=>{},
-    onDragStart = ()=>{}
+    onDragStart = ()=>{},
+    events = [],
 } : CalendarOption, ref)=>{
 
     const [stDate, setStDate] = useState<Date>(new Date());
@@ -68,6 +69,7 @@ const PlannerCalendar = forwardRef(({
                     onClick={onClick}
                     onDragEnd={onDragEnd}
                     onDragStart={onDragStart}
+                    events={events}
                 />
                 :
                 ''
