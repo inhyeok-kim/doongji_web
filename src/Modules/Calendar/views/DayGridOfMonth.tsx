@@ -78,7 +78,10 @@ export default function DayGridOfMonth({
                 fontFamily : 'sans-serif',
                 fontWeight : '300',
                 '& *' : {
-                    userSelect : 'none'
+                    userSelect : 'none',
+                    WebkitUserSelect : 'none',
+                    MozUserSelect : 'none',
+                    msUserSelect : 'none',
                 }
             }}
             height={'100%'}

@@ -1,4 +1,4 @@
-import {useState, useEffect, useRef} from 'react';
+import {useState, useEffect, useRef, ReactNode} from 'react';
 import { Observer } from 'src/Remote/Remote';
 
 export default function SandBox(){
@@ -27,6 +27,10 @@ function Subscriber({
 }){
     const [str, setStr] = useState(data);
     const obSeq = useRef<number>(0);
+
+    useEffect(()=>{
+        console.log(str);
+    },[str]);
     useEffect(()=>{
         const seq = Observer.doSubscribe(id,setStr);
         obSeq.current = seq;
@@ -39,13 +43,40 @@ function Subscriber({
     },[]);
 
 
-    function change(e:React.ChangeEvent<HTMLInputElement>){
-        setStr(e.target.value);
+    function change(e:string){
+        console.log(e);
     }
 
     return (
-        <div contentEditable onChange={change}>
+        <EditableDiv onChange={change}>
             {str}
+        </EditableDiv>
+    )
+}
+
+interface EditalbleDivProps {
+    children? : ReactNode
+    onChange? : (value : string) => void
+}
+
+function EditableDiv({
+    children,
+    onChange = ()=>{}
+} : EditalbleDivProps){
+
+    const value = useRef(children);
+
+    function fnChange(e:React.ChangeEvent<HTMLDivElement>){
+        onChange(e.target.innerHTML);
+    }
+
+    return (
+        <div
+            contentEditable
+            onChange={fnChange}
+            suppressContentEditableWarning
+        >
+            {value.current}
         </div>
     )
 }
