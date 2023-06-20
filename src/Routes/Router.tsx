@@ -7,7 +7,7 @@ import Error from "../Pages/Error";
 import AdminLayout from "../Layout/AdminLayout";
 import Test from "../Pages/Test";
 import CalendarPage from "../Pages/CalendarPage";
-import BudgetPage from "../Pages/BudgetPage";
+import AccountPage from "../Pages/AccountPage";
   
 const router = createBrowserRouter(
     createRoutesFromElements(
@@ -37,11 +37,11 @@ const router = createBrowserRouter(
                     element={<CalendarPage/>} />
             </Route>
             <Route
-                path="budget"
+                path="account"
             >
                 <Route 
                     index 
-                    element={<BudgetPage />} />
+                    element={<AccountPage />} />
             </Route>
         </Route>
     )

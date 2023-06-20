@@ -13,6 +13,7 @@ export interface Budget {
     name? : string
     iconNum? : number
     type? : BudgetType
+    amount? :number 
 };
 
 export type TradeType = 'expend'|'income'| 'transfer'| 'revenue'| 'loss'| 'buy'| 'sell';
@@ -33,4 +34,8 @@ export interface TradeOfApi extends Trade{
     budgetIconNum? : number
     fromAssetIconNum? : number
     toAssetIconNum? : number
+}
+
+export interface BudgetOfApi extends Budget {
+    useAmount? : number
 }

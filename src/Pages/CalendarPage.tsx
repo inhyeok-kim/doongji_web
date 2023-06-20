@@ -1,20 +1,19 @@
 import Grid2 from "@mui/material/Unstable_Grid2/Grid2";
-import { Paper } from "@mui/material";
-import Calendar from "../Modules/Calendar";
+import PlannerWidget from "../Modules/Calendar/Widget/PlannerWidget";
+import GlassWidget from "../Layout/Widget/GlassWidget";
 
 export default function CalendarPage(){
     
     return (
-        <Paper
-            elevation={1}
-            sx={{
-                width:'100%',
-                padding : '1rem',
-                boxSizing:"border-box",
-                height : '100%'
-            }}
+        <Grid2
+            height={'100%'}
         >
-            <Calendar />
-        </Paper>
+            <GlassWidget
+                width="100%"
+                height="100%"
+            >
+                <PlannerWidget />
+            </GlassWidget>
+        </Grid2>
     )
 }

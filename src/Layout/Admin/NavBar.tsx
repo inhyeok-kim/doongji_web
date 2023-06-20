@@ -3,9 +3,9 @@ import AppBar from '@mui/material/AppBar';
 import IconButton from '@mui/material/IconButton';
 import MenuIcon from '@mui/icons-material/Menu';
 import { ThemeProvider, createTheme } from '@mui/material/styles';
-import { Drawer, ListItemText, MenuItem, MenuList } from "@mui/material";
+import { Drawer, ListItemText, MenuItem, MenuList, Typography } from "@mui/material";
 import { useState,useMemo } from "react";
-import { grey } from "@mui/material/colors";
+import { blueGrey, grey } from "@mui/material/colors";
 import { useMatches, useNavigate } from "react-router-dom";
 
 export default function Navbar(){
@@ -21,8 +21,10 @@ export default function Navbar(){
                 alignItems={"center"}
                 sx={{display : {xs:'none',sm:'block'}}}    
             >
+                <Typography variant="h5" color={blueGrey[900]} fontWeight={'bold'}>
+                    Acount
+                </Typography>
             </Grid2>
-            <NavAppBar />
             
         </Grid2>
         
