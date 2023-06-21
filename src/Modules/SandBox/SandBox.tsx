@@ -1,16 +1,20 @@
 import {useState, useEffect, useRef, ReactNode} from 'react';
-import { Observer } from 'src/Remote/Remote';
+import DocumentNode from 'src/Modules/Block/DocumentNode';
 
 export default function SandBox(){
-    const [data, setData] = useState([{id:1,data:'someData'}, {id:1,data:'simpleData'}]);
 
-    return(
-        <div>
-            {data.map((v,i)=>(
-                <Subscriber key={v.id + i} id={v.id} data={v.data} />
-            ))}
-        </div>
+    return (
+        <DocumentNode />
     )
+    // const [data, setData] = useState([{id:1,data:'someData'}, {id:2,data:'simpleData'}]);
+
+    // return(
+    //     <div contentEditable suppressContentEditableWarning>
+    //         {data.map((v,i)=>(
+    //             <Subscriber key={v.id + i} id={v.id} data={v.data} />
+    //         ))}
+    //     </div>
+    // )
 }
 
 function Subscriber({
@@ -26,31 +30,38 @@ function Subscriber({
     }
 
     return (
-        <EditableDiv onChange={change}>
-            {str}
-        </EditableDiv>
+        <div contentEditable={id===1} suppressContentEditableWarning>
+            <EditorBlock onChange={change}>
+                {str}
+            </EditorBlock>
+        </div>
     )
 }
 
 interface EditalbleDivProps {
     children? : ReactNode
     onChange? : (value : string) => void
+    isEditable? : boolean
 }
 
-function EditableDiv({
+function EditorBlock({
     children,
-    onChange = ()=>{}
+    onChange = ()=>{},
+    isEditable = true
 } : EditalbleDivProps){
 
     const value = useRef(children);
 
     function fnChange(e:React.ChangeEvent<HTMLDivElement>){
+        console.log('hi');
+        value.current = e.target.innerHTML;
         onChange(e.target.innerHTML);
     }
 
     return (
         <div
-            contentEditable
+            contentEditable={isEditable}
+            onInput={fnChange}
             onChange={fnChange}
             suppressContentEditableWarning
         >
