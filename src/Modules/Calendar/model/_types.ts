@@ -35,5 +35,7 @@ export interface Event {
     end? : string
     title? : string
     isAllDay? : boolean
+    startDate? : Date
+    endDate? : Date
     
 }

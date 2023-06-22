@@ -12,7 +12,6 @@ export default function DataBlock({
     callback = ()=>{}
 } : Props){
     useEffect(()=>{
-        console.log('hi');
         const seq = doSubscribe(dataBlockId, callback);
         return ()=>{
             unSubscribe(dataBlockId, seq);

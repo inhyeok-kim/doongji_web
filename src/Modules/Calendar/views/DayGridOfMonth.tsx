@@ -1,7 +1,7 @@
 import Grid2 from "@mui/material/Unstable_Grid2/Grid2";
 import { useEffect, useState } from "react";
 import {createMonthDateList, createMonthDateListRange} from '../model/Utils';
-import { CalendarOption, DateData } from "../model/_types";
+import { CalendarOption, DateData, Event } from "../model/_types";
 import { blueGrey } from "@mui/material/colors";
 import { Typography } from "@mui/material";
 import { ClickAwayListener } from '@mui/base';
@@ -12,13 +12,30 @@ export default function DayGridOfMonth({
     overType = 'hide',
     onClick = ()=>{},
     onDragEnd = ()=>{},
+    events
 } : CalendarOption){
     const [dateList, setDateList] = useState<DateData[]>([]);
+    const [eventArray , setEventArray] = useState<Event[]>();
     
     const [selectedDateList, setSelectedDateList] = useState<DateData[]>([]);
     const [isSelecting, setIsSelecting] = useState(false);
     const [selectStartIndex,setSelectStartIndex] = useState<number>();
     const [selectEndIndex,setSelectEndIndex] = useState<number>();
+
+    useEffect(()=>{
+        setEventArray(events?.map(e=>{
+            const event = {...e};
+            const startStr = e.start!.substring(0,e.start!.indexOf('T'));
+            const endStr = e.end!.substring(0,e.end!.indexOf('T'));
+            event.startDate = new Date(startStr);
+            event.endDate = new Date(endStr);
+            return event;
+        }));
+    },[events]);
+
+    useEffect(()=>{
+        console.log(eventArray);
+    },[eventArray]);
 
     useEffect(()=>{
         if(isVerticalScroll){
@@ -138,6 +155,17 @@ export default function DayGridOfMonth({
                                     onMouseDown={mouseDownDate}
                                     onMouseMove={mouseMoveDate}
                                 >
+                                    {
+                                        eventArray?.filter(e=>{
+                                            if(e.startDate! <= new Date(v.text!) && e.endDate! >= new Date(v.text!)){
+                                                return true
+                                            }
+                                        }).map(e=>{
+                                            return <div style={{background : e.isAllDay ? 'black' : ''}}>
+                                                hi
+                                            </div>
+                                        })
+                                    }
                                 </DayGrid>
                                 :
                                 <DayGrid 
@@ -217,9 +245,9 @@ function DayGrid({
                     <Typography color={blueGrey[700]} fontSize={'0.9rem'}>
                         {date.date}
                     </Typography>
-                    <Grid2>
-                        {children}
-                    </Grid2>
+                </Grid2>
+                <Grid2>
+                    {children}
                 </Grid2>
             </div>
         </Grid2>

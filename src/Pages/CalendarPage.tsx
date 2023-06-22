@@ -13,8 +13,8 @@ export default function CalendarPage(){
                 width="100%"
                 height="100%"
             >
-                <SandBox />
-                {/* <PlannerWidget /> */}
+                {/* <SandBox /> */}
+                <PlannerWidget />
             </GlassWidget>
         </Grid2>
     )
