@@ -23,14 +23,24 @@ export default function DayGridOfMonth({
     const [selectEndIndex,setSelectEndIndex] = useState<number>();
 
     useEffect(()=>{
-        setEventArray(events?.map(e=>{
+        const arr = events?.map(e=>{
             const event = {...e};
             const startStr = e.start!.substring(0,e.start!.indexOf('T'));
             const endStr = e.end!.substring(0,e.end!.indexOf('T'));
             event.startDate = new Date(startStr);
             event.endDate = new Date(endStr);
             return event;
-        }));
+        });
+        arr?.sort((a,b)=>{
+            if(a.isAllDay && !b.isAllDay){
+                return -1;
+            }
+            if(!a.isAllDay && b.isAllDay){
+                return 1;
+            }
+            return b.startDate!.getTime() - a.startDate!.getTime();
+        })
+        setEventArray(arr);
     },[events]);
 
     useEffect(()=>{

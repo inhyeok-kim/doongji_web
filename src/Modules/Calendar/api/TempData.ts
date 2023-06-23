@@ -31,6 +31,7 @@ export const eventList : Event[] = [
         id : '5',
         title : 'temp5',
         start : '2023-06-05T12:30',
-        end : '2023-06-07T:23:59'
+        end : '2023-06-07T:23:59',
+        isAllDay : true,
     },
 ]
