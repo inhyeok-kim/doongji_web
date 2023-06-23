@@ -1,5 +1,5 @@
 import Grid2 from "@mui/material/Unstable_Grid2/Grid2";
-import { useEffect, useState } from "react";
+import { useEffect, useLayoutEffect, useRef, useState } from "react";
 import {createMonthDateList, createMonthDateListRange} from '../model/Utils';
 import { CalendarOption, DateData, Event } from "../model/_types";
 import { blueGrey } from "@mui/material/colors";
@@ -143,39 +143,6 @@ export default function DayGridOfMonth({
                         height={'calc(100% - 32px)'}
                         overflow={isVerticalScroll ? 'auto' : ''}
                     >
-                        { // 날짜 표시
-                            dateList.map((v,i)=>(
-                                v.text ? 
-                                <DayGrid 
-                                    key={i}
-                                    date={v}
-                                    index={i}
-                                    isSelected={selectedDateList.findIndex(i=>i.date === v.date) > -1}
-                                    onClick={clickDate}
-                                    onMouseDown={mouseDownDate}
-                                    onMouseMove={mouseMoveDate}
-                                >
-                                    {
-                                        eventArray?.filter(e=>{
-                                            if(e.startDate! <= new Date(v.text!) && e.endDate! >= new Date(v.text!)){
-                                                return true
-                                            }
-                                        }).map(e=>{
-                                            return <div style={{background : e.isAllDay ? 'black' : ''}}>
-                                                hi
-                                            </div>
-                                        })
-                                    }
-                                </DayGrid>
-                                :
-                                <DayGrid 
-                                    key={i}
-                                    date={v}
-                                >
-                                </DayGrid>
-                                
-                            ))
-                        }
                     </Grid2>
                 </div>
             </ClickAwayListener>
@@ -185,7 +152,6 @@ export default function DayGridOfMonth({
 }
 
 interface DayGridProp {
-    children? : React.ReactNode
     date : DateData
     index? : number
     onClick? : Function
@@ -194,7 +160,6 @@ interface DayGridProp {
     isSelected? : boolean
 }
 function DayGrid({
-    children,
     date,
     index,
     onClick = ()=>{},
@@ -202,6 +167,13 @@ function DayGrid({
     onMouseMove = ()=>{},
     isSelected,
 }:DayGridProp){
+    const eventGridRef = useRef<HTMLDivElement>(null);
+
+    useLayoutEffect(()=>{
+        if(eventGridRef.current){
+            console.log(eventGridRef.current.offsetHeight);
+        }
+    },[eventGridRef]);
 
     function clickHandler(){
         onClick(date);
@@ -246,10 +218,23 @@ function DayGrid({
                         {date.date}
                     </Typography>
                 </Grid2>
-                <Grid2>
-                    {children}
+                <Grid2 ref={eventGridRef}>
+                    {
+
+                    }
                 </Grid2>
             </div>
         </Grid2>
+    )
+}
+
+interface EventBlockProp {
+    eventData : Event
+}
+function EventBlock(){
+    return (
+        <div>
+
+        </div>
     )
 }
