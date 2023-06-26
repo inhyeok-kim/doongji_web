@@ -244,7 +244,7 @@ interface EventBlockProp {
 function EventBlock(){
     return (
         <div>
-
+            
         </div>
     )
 }
