@@ -6,9 +6,15 @@ import { ThemeProvider, createTheme } from '@mui/material/styles';
 import { Drawer, ListItemText, MenuItem, MenuList, Typography } from "@mui/material";
 import { useState,useMemo } from "react";
 import { blueGrey, grey } from "@mui/material/colors";
-import { useMatches, useNavigate } from "react-router-dom";
+import { useLocation, useMatches, useNavigate } from "react-router-dom";
 
 export default function Navbar(){
+    const location = useLocation();
+
+    const currMenu = useMemo(()=>{
+        const pathname = location.pathname;
+        return pathname.substring(1,pathname.length).split('/').reverse();
+    },[location]);
 
     return (
         <Grid2 
@@ -22,7 +28,15 @@ export default function Navbar(){
                 sx={{display : {xs:'none',sm:'block'}}}    
             >
                 <Typography variant="h5" color={blueGrey[900]} fontWeight={'bold'}>
-                    Acount
+                    {
+                        currMenu.map((v,i)=>{
+                            if(i>0){
+                                return <Typography variant="caption" fontSize={'1rem'} color={blueGrey[800]} fontWeight={'bold'}> / {v}</Typography>
+                            } else {
+                                return v
+                            }
+                        })
+                    }
                 </Typography>
             </Grid2>
             

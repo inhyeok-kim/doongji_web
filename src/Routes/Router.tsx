@@ -41,7 +41,17 @@ const router = createBrowserRouter(
             >
                 <Route 
                     index 
-                    element={<AccountPage />} />
+                    element={<AccountPage />} 
+                />
+                <Route
+                    path="asset"
+                />
+                <Route
+                    path="budget"
+                />
+                <Route
+                    path="trade"
+                />
             </Route>
         </Route>
     )
